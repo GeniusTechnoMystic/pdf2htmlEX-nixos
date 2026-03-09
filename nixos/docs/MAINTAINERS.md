@@ -2,6 +2,10 @@
 
 This fork is optimized for Nix/NixOS reproducibility while keeping root layout close to upstream `pdf2htmlEX`.
 
+## Canonical maintenance docs
+- Top-level maintainer entrypoint: [`MAINTAINERS.md`](../../MAINTAINERS.md)
+- Project roadmap/tasks: [`nixos/docs/ProjectTaskPlan.md`](./ProjectTaskPlan.md)
+
 ## Scope boundaries
 - Keep upstream-like source in repository root (`pdf2htmlEX/`, historical docs/scripts).
 - Keep Nix-specific packaging and operational docs in `nixos/` (except root `flake.nix` and `flake.lock`).
