@@ -24,7 +24,7 @@
 
 stdenv.mkDerivation rec {
   pname = "pdf2htmlEX";
-  version = "v0.18.8.rc1-nixos-25.11";
+  version = "v1.0.2-nixos";
 
   # Important: Points to the root of your repo from the /nixos folder
   src = ../.;
@@ -35,9 +35,9 @@ stdenv.mkDerivation rec {
   # Expose the version directly to the CMake environment
   PDF2HTMLEX_VERSION = version;
 
-  nativeBuildInputs = [ 
-    cmake 
-    pkg-config 
+  nativeBuildInputs = [
+    cmake
+    pkg-config
     jre_headless
     python3
   ];
@@ -68,8 +68,8 @@ stdenv.mkDerivation rec {
   postPatch = ''
     substituteInPlace CMakeLists.txt \
       --replace-quiet "cmake_minimum_required(VERSION 2.6.0 FATAL_ERROR)" "cmake_minimum_required(VERSION 3.5 FATAL_ERROR)" \
-      
-    # Upstream forgets to ask pkg-config for GLib and LibXML2 include paths. 
+
+    # Upstream forgets to ask pkg-config for GLib and LibXML2 include paths.
     # We forcefully inject this into CMake so it maps the Nix store paths to the C compiler.
     sed -i '/find_package(PkgConfig)/a pkg_check_modules(NIX_DEPS REQUIRED glib-2.0 gio-2.0 gobject-2.0 libxml-2.0)\ninclude_directories(''${NIX_DEPS_INCLUDE_DIRS})' CMakeLists.txt
 
@@ -167,7 +167,7 @@ stdenv.mkDerivation rec {
       -DENABLE_LIBTIFF=OFF \
       -DENABLE_WOFF2=OFF \
       -DENABLE_DOCS=OFF
-      
+
     make -j$NIX_BUILD_CORES
     popd
   '';
