@@ -14,6 +14,8 @@ If you have Nix with Flakes enabled, you can run this tool from anywhere on your
 nix run github:GeniusTechnoMystic/pdf2htmlEX-nixos#pdf2htmlEX -- /path/to/your/document.pdf
 ```
 
+To use it in your system configuration, add it to your flake inputs.
+
 ### 🛠️ Development & Building
 
 To build the executable locally from source:
