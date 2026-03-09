@@ -174,10 +174,10 @@ stdenv.mkDerivation rec {
 
   meta = with lib; {
     description = "PDF to HTML converter - NixOS optimized fork";
-    homepage = "https://github.com/youruser/pdf2htmlEX-nixos";
+    homepage = "https://github.com/GeniusTechnoMystic/pdf2htmlEX-nixos";
     license = licenses.gpl3Plus;
     platforms = platforms.linux;
-    maintainers = [ GeniusTechnoMystic ]; # Add your GitHub handle here
+    maintainers = [ ];
     mainProgram = "pdf2htmlEX";
   };
 }
