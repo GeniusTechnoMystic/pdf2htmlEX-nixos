@@ -56,23 +56,12 @@ stdenv.mkDerivation rec {
     glib
     zlib
     gettext
-
-    #pango
-    #ghostscript # Often needed for complex font processing
   ];
 
   # These flags ensure Nix-style installation paths
   cmakeFlags = [
-    "-DCMAKE_INSTALL_PREFIX=$out"
     "-DENABLE_SVG=ON"
-    #"-DENABLE_XAPIAN=OFF" # Xapian is often optional/problematic in older builds
   ];
-
-  # Tell the C++ compiler exactly where to find the isolated Nix headers
-  #NIX_CFLAGS_COMPILE = [
-  #  "-I${lib.getDev poppler}/include/poppler"
-  #  "-I${lib.getDev fontforge}/include/fontforge"
-  #];
 
   # The upstream CMakeLists attempts to find Poppler in ../poppler
   # We need to tell it to look in the standard Nix paths instead.
