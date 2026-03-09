@@ -1,5 +1,15 @@
 {
-  description = "pdf2htmlEX NixOS 25.11 fork, a high-fidelity PDF to HTML conversion tool";
+  description = "pdf2htmlEX NixOS 25.11 fork, a hermetic, reproducible PDF to HTML converter";
+
+  # This block tells Nix where to find the pre-compiled binaries
+  nixConfig = {
+    extra-substituters = [
+      "https://pdf2htmlex-nixos.cachix.org"
+    ];
+    extra-trusted-public-keys = [
+      "pdf2htmlex-nixos.cachix.org-1:pdf2htmlex-nixos.cachix.org-1:TT2BBbTqyRdVdfmgY2/OW11liW9t4Z7XSdYJLUg2Dyg="
+    ];
+  };
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
@@ -27,10 +37,16 @@
         devShells.default = pkgs-legacy.mkShell {
           inputsFrom = [ self.packages.${system}.pdf2htmlEX ];
 
-          nativeBuildInputs = with pkgs; [ cmake pkg-config ];
+          nativeBuildInputs = with pkgs; [ cmake pkg-config cachix ];
 
           #buildInputs = self.packages.${system}.pdf2htmlEX.buildInputs;
           buildInputs = with pkgs; [ gdb strace ];
+
+          shellHook = ''
+            echo "❄️ pdf2htmlEX Dev Shell Loaded"
+            echo "📦 Active Cache: https://pdf2htmlex-nixos.cachix.org"
+          '';
+
         };
       }
     );

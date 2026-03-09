@@ -21,6 +21,12 @@ jobs:
         with:
           github_access_token: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Setup Cachix
+        uses: cachix/cachix-action@v15
+        with:
+          name: pdf2htmlex-nixos # Replace with your cache name
+          authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
+          
       - name: Verify Flake Checker
         uses: DeterminateSystems/flake-checker-action@v9
         
