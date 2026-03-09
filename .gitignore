@@ -12,7 +12,6 @@ CMakeFiles/*
 compile_commands.json
 CTestTestfile.cmake
 DartConfiguration.tcl
-flake.lock
 fontforge
 gmon.out
 imageBuild
