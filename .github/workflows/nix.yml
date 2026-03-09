@@ -1,0 +1,31 @@
+name: Nix CI
+
+on:
+  push:
+    branches: [ "nixos-package" ]
+  pull_request:
+    branches: [ "nixos-package" ]
+  workflow_dispatch: # Allows you to trigger the build manually from the GitHub UI
+
+jobs:
+  build-and-test:
+    name: Build pdf2htmlEX Flake
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Nix
+        uses: cachix/install-nix-action@v30
+        with:
+          github_access_token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Verify Flake Checker
+        uses: DeterminateSystems/flake-checker-action@v9
+        
+      - name: Build pdf2htmlEX
+        run: nix build .#pdf2htmlEX --print-build-logs
+
+      - name: Smoke Test Binary
+        run: ./result/bin/pdf2htmlEX -v
