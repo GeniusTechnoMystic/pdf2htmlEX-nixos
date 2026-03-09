@@ -5,7 +5,7 @@
 ---
 
 ## ✅ Phase 1: Nix Core & Reproducibility (COMPLETED)
-*Goal: Establish a functional, sandboxed build environment.*
+* **Goal**: Transition from a local build to a shareable, reproducible Nix Flake.
 
 - [x] **Task 1.1: Define the Package (`nixos/package.nix`)**
   - Map upstream dependencies to Nixpkgs equivalents.
@@ -39,7 +39,7 @@
 
 ---
 
-## ⏳ Phase 3: CI/CD & Automation
+## ⏳ Phase 3: Continuous Integration & Delivery (CI/CD)
 *Goal: Automate verification and ease user adoption.*
 
 - [x] **Task 3.1: Implement Nix GitHub Action**
@@ -52,8 +52,8 @@
 
 ---
 
-## 🔮 Phase 4: Upstream Synchronization
-*Goal: Maintain longevity through inheritance.*
+## 🔮 Phase 4: Operations, Maintenance & AI Observability
+* **Goal**: Codify the "Sync Protocol" to manage upstream drift and provide "firmware" for AI agents.
 
 - [x] **Task 4.1: Document the Sync Protocol**
   - Create a guide for merging `upstream/master` into `nixos-package`.
@@ -62,3 +62,18 @@
 - [x] **Task 4.2: Regular Maintenance & Version Locking**
   - Update host `flake.lock` periodically for security patches.
   - **CRITICAL:** The `nixpkgs-legacy` input MUST remain pinned to a version providing Poppler <= 24.09.0 unless upstream completely rewrites their font extraction logic to remove the `CharCodeToUnicode` dependency.
+
+---
+
+## Phase 5: Release Engineering & Distribution
+* **Goal**: Formalize the project for public consumption and stable Nix Flake referencing.
+
+- [ ] **Task 5.1: Formal Release Tagging**
+  - Create a GitHub Release for `v0.18.8-nixos-1.0.0`.
+  - Point the `package.nix` version string to a more standard semver.
+
+- [ ] **Task 5.2: Supported Systems Documentation**
+  - Explicitly document that this build is optimized for `x86_64-linux` and `aarch64-linux` in the `README.md`.
+
+- [ ] **Task 5.3: CONTRIBUTING.md**
+  - Create a basic guide for others who want to help maintain this specific Nix branch.

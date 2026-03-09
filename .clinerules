@@ -1,0 +1,18 @@
+# pdf2htmlEX-nixos AI Instructions
+
+## Critical Context
+- This is a NixOS-optimized fork of pdf2htmlEX. 
+- We use Nix Flakes to solve a critical Poppler API break (deletion of CharCodeToUnicode).
+- The project environment is pinned to Poppler 24.02.0 via the `nixpkgs-legacy` input.
+
+## Rules of Engagement
+1. **No Imperative Commands:** NEVER suggest `apt`, `yum`, `brew`, or manual `make`. All dependencies must be added to `nixos/package.nix`.
+2. **Nix-Native Testing:** Always suggest `nix build .#pdf2htmlEX` to verify changes.
+3. **Sandbox Awareness:** Remember that the build happens in a hermetic sandbox. Use `postPatch` or `preConfigure` in the Nix derivation to modify the source.
+4. **File Structure:** All Nix logic stays in `/nixos/`. Do not pollute the root directory.
+5. **Cachix Integration:** If the user mentions build times, suggest using `cachix push pdf2htmlex-nixos ./result`.
+
+## Technical Specs
+- Compiler: pinned to nixos-24.11 (Poppler 24.02.0).
+- Key Headers: Requires internal Poppler headers (OutputDev.h, CharCodeToUnicode.h).
+- Static Linking: We compile Poppler and FontForge statically within the derivation.
