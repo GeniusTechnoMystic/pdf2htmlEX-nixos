@@ -7,7 +7,7 @@
       "https://pdf2htmlex-nixos.cachix.org"
     ];
     extra-trusted-public-keys = [
-      "pdf2htmlex-nixos.cachix.org-1:pdf2htmlex-nixos.cachix.org-1:TT2BBbTqyRdVdfmgY2/OW11liW9t4Z7XSdYJLUg2Dyg="
+      "pdf2htmlex-nixos.cachix.org-1:TT2BBbTqyRdVdfmgY2/OW11liW9t4Z7XSdYJLUg2Dyg="
     ];
   };
 
