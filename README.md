@@ -26,6 +26,13 @@ nix build .#pdf2htmlEX
 
 ```
 
+### 💻 Supported Systems
+This Nix Flake is strictly engineered and tested for:
+* **x86_64-linux**: Fully optimized and cached.
+* **aarch64-linux**: Supported via the `nixpkgs-legacy` (24.11) channel.
+
+*Note: Due to the static pinning of Poppler 24.02.0 and specific C++ dependencies, Darwin (macOS) is currently not supported by this flake.*
+
 ## Maintenance
 For instructions on syncing with upstream or maintaining the Nix build, see [MAINTAINERS.md](./MAINTAINERS.md).
 
