@@ -26,6 +26,10 @@ nix build .#pdf2htmlEX
 
 ```
 
+## Maintenance
+For instructions on syncing with upstream or maintaining the Nix build, see [MAINTAINERS.md](./MAINTAINERS.md).
+
+
 
 # ![](https://pdf2htmlEX.github.io/pdf2htmlEX/images/pdf2htmlEX-64x64.png) pdf2htmlEX 
 
@@ -111,4 +115,4 @@ pdf2htmlEX is inspired by the following projects:
 #### Special Thanks
 
 * Hongliang Tian
-* Wanmin Liu 
+* Wanmin Liu

@@ -1,3 +1,30 @@
+# Contributing to pdf2htmlEX-nixos
+
+## Development Environment
+This project uses **Nix Flakes** and **direnv** to provide a consistent development environment.
+
+1. **Enter the shell:**
+```bash
+   nix develop
+
+```
+
+*Alternatively, if you have `direnv` installed, just run `direnv allow`.*
+
+2. **Build the project:**
+```bash
+   nix build .#pdf2htmlEX
+
+```
+
+## Workflow
+
+* All Nix-specific code resides in the `nixos/` directory.
+* The `flake.nix` in the root manages the project's dependency pins (Poppler, FontForge).
+
+---
+
+
 This is a general guide if you want to report bugs, ask questions,
 request features or submitting patches.
 Please take a moment to review this document in order to make the 
