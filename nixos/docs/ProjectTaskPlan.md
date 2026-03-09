@@ -68,12 +68,12 @@
 ## Phase 5: Release Engineering & Distribution
 * **Goal**: Formalize the project for public consumption and stable Nix Flake referencing.
 
-- [ ] **Task 5.1: Formal Release Tagging**
+- [x] **Task 5.1: Formal Release Tagging**
   - Create a GitHub Release for `v0.18.8-nixos-1.0.0`.
   - Point the `package.nix` version string to a more standard semver.
 
-- [ ] **Task 5.2: Supported Systems Documentation**
+- [x] **Task 5.2: Supported Systems Documentation**
   - Explicitly document that this build is optimized for `x86_64-linux` and `aarch64-linux` in the `README.md`.
 
-- [ ] **Task 5.3: CONTRIBUTING.md**
+- [x] **Task 5.3: CONTRIBUTING.md**
   - Create a basic guide for others who want to help maintain this specific Nix branch.
