@@ -4,32 +4,31 @@
 
 ---
 
-## 🏗️ Phase 1: Nix Core & Reproducibility
+## ✅ Phase 1: Nix Core & Reproducibility (COMPLETED)
 *Goal: Establish a functional, sandboxed build environment.*
 
-- [ ] **Task 1.1: Define the Package (`nixos/package.nix`)**
-  - Map upstream dependencies (Poppler, FontForge, etc.) to Nixpkgs 25.11 equivalents.
-  - Implement `cmakeFlags` to handle Nix-specific `$out` paths.
+- [x] **Task 1.1: Define the Package (`nixos/package.nix`)**
+  - Map upstream dependencies to Nixpkgs equivalents.
+  - Implement static sub-builds for Poppler and FontForge to expose internal, undocumented C++ headers and ABI symbols required by the engine.
+  - Inject `pkg-config` variables into CMake to securely resolve GLib/GIO and LibXML2 paths in the Nix sandbox.
   - *Success Criteria:* `nix-build` succeeds without network access during the build phase.
 
-- [ ] **Task 1.2: Root Flake Integration (`flake.nix`)**
+- [x] **Task 1.2: Root Flake Integration (`flake.nix`)**
   - Create the entry point in the root directory.
-  - Configure `src = ./.` to ensure local changes are picked up.
-  - Call `./nixos/package.nix` for the default package output.
+  - Implement a "Legacy Escape Hatch" by pinning the C++ toolchain to `nixos-24.11` (Poppler 24.02.0) to safely bypass the upstream deletion of `CharCodeToUnicode`.
   - *Success Criteria:* `nix build .#pdf2htmlEX` generates a working binary in `./result/bin/`.
 
-- [ ] **Task 1.3: Development Shell (`devShells`)**
-  - Define a `nix develop` environment containing all build-time dependencies.
-  - *Success Criteria:* `cmake .. && make` works natively inside the `nix develop` shell.
-
+- [x] **Task 1.3: Development Shell (`devShells`)**
+  - Define a `nix develop` environment containing all build-time dependencies (`cmake`, `python3`, `jre_headless`, etc.).
+  - *Success Criteria:* Environment natively supports the compilation pipeline.
 ---
 
-## 📖 Phase 2: Documentation & Identity
+## 🚧 Phase 2: Documentation & Identity
 *Goal: Clarify the fork's purpose and align AI agents.*
 
 - [ ] **Task 2.1: Prepend NixOS instructions to `README.md`**
   - Add "Quick Start" for NixOS users.
-  - Document the Flake URI: `github:youruser/pdf2htmlEX-nixos/nixos-package`.
+  - Document the Flake URI and explain *why* the Flake is necessary (the Poppler API break).
 
 - [ ] **Task 2.2: Create `AGENTS.md`**
   - Define instructions for AI coding assistants (Cursor/Windsurf) to prioritize Nix-native workflows.
@@ -40,24 +39,26 @@
 
 ---
 
-## 🤖 Phase 3: CI/CD & Automation
+## ⏳ Phase 3: CI/CD & Automation
 *Goal: Automate verification and ease user adoption.*
 
 - [ ] **Task 3.1: Implement Nix GitHub Action**
   - Create `.github/workflows/nix.yml`.
-  - Use `cachix/install-nix-action` to verify the flake on every push to `nixos-package`.
+  - Use `cachix/install-nix-action` to verify the flake on every push.
 
-- [ ] **Task 3.2: (Optional) Binary Caching**
-  - Set up a Cachix push-pull mechanism to avoid long FontForge/Poppler compilation times for end-users.
+- [ ] **Task 3.2: Binary Caching (High Priority)**
+  - Set up a Cachix push-pull mechanism.
+  - *Note:* Because we compile Poppler and FontForge statically from source, binary caching is critical to avoid 5+ minute compile times for end-users.
 
 ---
 
-## 🔄 Phase 4: Upstream Synchronization
+## 🔮 Phase 4: Upstream Synchronization
 *Goal: Maintain longevity through inheritance.*
 
 - [ ] **Task 4.1: Document the Sync Protocol**
   - Create a guide for merging `upstream/master` into `nixos-package`.
   - Handle potential conflicts in `CMakeLists.txt` or `.github/` folders.
 
-- [ ] **Task 4.2: Regular Maintenance**
-  - Update `flake.lock` periodically to track NixOS 25.11 security patches.
+- [ ] **Task 4.2: Regular Maintenance & Version Locking**
+  - Update host `flake.lock` periodically for security patches.
+  - **CRITICAL:** The `nixpkgs-legacy` input MUST remain pinned to a version providing Poppler <= 24.09.0 unless upstream completely rewrites their font extraction logic to remove the `CharCodeToUnicode` dependency.
