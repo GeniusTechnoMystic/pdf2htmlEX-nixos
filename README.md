@@ -1,3 +1,32 @@
+# pdf2htmlEX (NixOS / Flake Edition)
+
+This is a specialized, highly-reproducible fork of `pdf2htmlEX` designed specifically for Nix and NixOS users. 
+
+### ⚠️ Why this fork exists (The Poppler API Break)
+Upstream `pdf2htmlEX` relies heavily on internal, undocumented Poppler C++ headers (specifically `CharCodeToUnicode.h` and `OutputDev`) to achieve pixel-perfect HTML rendering. In late 2024 (Poppler 24.10.0+), the Poppler team permanently deleted the `CharCodeToUnicode` class, completely breaking `pdf2htmlEX` on modern Linux distributions. 
+
+This Nix Flake solves this by creating a hermetic time-capsule. It utilizes `nixpkgs-legacy` (24.11) to securely lock the C++ toolchain to **Poppler 24.02.0**, compiling both Poppler and FontForge statically from source to expose the necessary internal ABI symbols without polluting your host system.
+
+### 🚀 Quick Start (No Installation Required)
+If you have Nix with Flakes enabled, you can run this tool from anywhere on your system without installing any dependencies:
+
+```bash
+nix run github:GeniusTechnoMystic/pdf2htmlEX-nixos#pdf2htmlEX -- /path/to/your/document.pdf
+```
+
+### 🛠️ Development & Building
+
+To build the executable locally from source:
+
+```bash
+git clone https://github.com/GeniusTechnoMystic/pdf2htmlEX-nixos.git
+cd pdf2htmlEX-nixos
+nix build .#pdf2htmlEX
+./result/bin/pdf2htmlEX --version
+
+```
+
+
 # ![](https://pdf2htmlEX.github.io/pdf2htmlEX/images/pdf2htmlEX-64x64.png) pdf2htmlEX 
 
 [![Build Status](https://travis-ci.org/pdf2htmlEX/pdf2htmlEX.svg?branch=master)](https://travis-ci.org/pdf2htmlEX/pdf2htmlEX)
