@@ -27,10 +27,23 @@
 
         # Instantiate the highly-stable 24.11 build environment
         pkgs-legacy = import nixpkgs-legacy { inherit system; };
+
+        # Parameterize the version: Use the tag if available, otherwise hash, otherwise 'dirty'
+        # In flake.nix
+        upstreamVersion = "0.18.8.1";
+        
+        nixVersion = if (self ? shortRev) 
+                     then "v1.0.2-${self.shortRev}"  # Clean commit: includes the hash
+                     else "v1.0.2-dirty";            # Local changes: identifies as 'dirty'
+        
+        fullVersion = "${upstreamVersion}-nixos-${nixVersion}";
+
       in
       {
-        # This allows users to run: nix build github:youruser/pdf2htmlEX-nixos
-        packages.pdf2htmlEX = pkgs-legacy.callPackage ./nixos/package.nix { };
+        # This allows users to run: nix build github:GeniusTechnoMystic/pdf2htmlEX-nixos
+        packages.pdf2htmlEX = pkgs-legacy.callPackage ./nixos/package.nix {
+          version = fullVersion;
+        };
         packages.default = self.packages.${system}.pdf2htmlEX;
 
         # For development: nix develop

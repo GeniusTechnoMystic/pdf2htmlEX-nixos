@@ -20,11 +20,13 @@
 , python3
 , stdenv
 , zlib
+, version ? "unknown" # Accept the version parameter with a default
+, ... 
 }:
 
 stdenv.mkDerivation rec {
   pname = "pdf2htmlEX";
-  version = "v1.0.2-nixos";
+  inherit version; # Use the passed-in version
 
   # Important: Points to the root of your repo from the /nixos folder
   src = ../.;
