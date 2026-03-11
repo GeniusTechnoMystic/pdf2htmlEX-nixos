@@ -1,4 +1,26 @@
-# pdf2htmlEX (NixOS / Flake Edition)
+<p align="center">
+  <img src=".github/images/logo_light.svg#gh-light-mode-only" width="220">
+  <img src=".github/images/logo_dark.svg#gh-dark-mode-only" width="220">
+</p>
+
+<h1 align="center">pdf2htmlEX-nixos</h1>
+
+<p align="center">
+  Reproducible NixOS packaging and container environment for pdf2htmlEX
+</p>
+
+<p align="center">
+  <a href="https://github.com/GeniusTechnoMystic/pdf2htmlEX-nixos/actions">
+    <img src="https://img.shields.io/github/actions/workflow/status/GeniusTechnoMystic/pdf2htmlEX-nixos/nix.yml?style=flat-square">
+  </a>
+  <img src="https://img.shields.io/github/license/GeniusTechnoMystic/pdf2htmlEX-nixos?style=flat-square">
+  <img src="https://img.shields.io/github/stars/GeniusTechnoMystic/pdf2htmlEX-nixos?style=flat-square">
+  <img src="https://img.shields.io/github/issues/GeniusTechnoMystic/pdf2htmlEX-nixos?style=flat-square">
+</p>
+
+---
+
+## Overview
 
 This is a specialized, highly-reproducible fork of `pdf2htmlEX` designed specifically for Nix and NixOS users. 
 
@@ -38,7 +60,17 @@ This Nix Flake is strictly engineered and tested for:
 ## Maintenance
 For instructions on syncing with upstream or maintaining the Nix build, see [MAINTAINERS.md](./MAINTAINERS.md).
 
+## Documentation
 
+See the `/nixos/docs` directory.
+
+## License
+
+This project is licensed under the GPL-3.0 License.
+
+See [LICENSE](LICENSE) for details.
+
+Additional upstream licensing notes are documented in [NOTICE](NOTICE).
 
 # ![](https://pdf2htmlEX.github.io/pdf2htmlEX/images/pdf2htmlEX-64x64.png) pdf2htmlEX 
 
@@ -102,7 +134,7 @@ Learn more about [who](https://github.com/pdf2htmlEX/pdf2htmlEX/wiki/Use-Cases) 
 ### LICENSE
 
 pdf2htmlEX, as a whole package, is licensed under GPLv3+.
-Some resource files are released with relaxed licenses, read `LICENSE` for more details.
+Some resource files are released with relaxed licenses, read `NOTICE` for more details.
 
 ### Acknowledgements
 
