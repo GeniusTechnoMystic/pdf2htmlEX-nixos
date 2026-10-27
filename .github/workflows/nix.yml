@@ -17,7 +17,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
 
       - name: Install Nix
         uses: cachix/install-nix-action@v30
@@ -25,13 +25,13 @@ jobs:
           github_access_token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup Cachix
-        uses: cachix/cachix-action@v15
+        uses: cachix/cachix-action@ad2ddac53f961de1989924296a1f236fcfbaa4fc
         with:
           name: pdf2htmlex-nixos # Replace with your cache name
           authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
           
       - name: Verify Flake Checker
-        uses: DeterminateSystems/flake-checker-action@v9
+        uses: DeterminateSystems/flake-checker-action@078f5f7f47ee188aa6cb472527ca5984e195222d
         
       - name: Build pdf2htmlEX
         run: nix build .#pdf2htmlEX --print-build-logs
