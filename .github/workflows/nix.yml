@@ -7,6 +7,9 @@ on:
     branches: [ "nixos-package" ]
   workflow_dispatch: # Allows you to trigger the build manually from the GitHub UI
 
+permissions:
+  contents: read
+
 jobs:
   build-and-test:
     name: Build pdf2htmlEX Flake
